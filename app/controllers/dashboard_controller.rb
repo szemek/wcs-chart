@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
-    titles = Rails.cache.fetch('titles', expires_in: 5.minutes) { PlaylistItems.titles }
+    items = Rails.cache.fetch('items', expires_in: 5.minutes) { PlaylistItems.fetch }
 
-    render :index, locals: { titles: titles }
+    render :index, locals: { items: items }
   end
 end

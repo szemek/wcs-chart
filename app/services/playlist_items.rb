@@ -1,7 +1,7 @@
 require 'google/apis/youtube_v3'
 
 class PlaylistItems
-  def self.titles
+  def self.fetch
     youtube = Google::Apis::YoutubeV3::YouTubeService.new
     youtube.key = ENV.fetch('YOUTUBE_DEVELOPER_KEY')
 
@@ -13,10 +13,17 @@ class PlaylistItems
 
     search = youtube.list_playlist_items(part, parameters)
 
-    titles = []
+    items = []
 
     loop do
-      titles.concat(search.items.map { |e| e.snippet.title })
+      page = search.items.map do |item|
+        {
+          title: item.snippet.title,
+          video_id: item.snippet.resource_id.video_id
+        }
+      end
+
+      items.concat(page)
 
       break unless search.next_page_token
 
@@ -24,6 +31,6 @@ class PlaylistItems
       search = youtube.list_playlist_items(part, parameters)
     end
 
-    titles
+    items
   end
 end
