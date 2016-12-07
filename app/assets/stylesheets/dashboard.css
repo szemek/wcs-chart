@@ -1,3 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+input#query {
+  height: 33px;
+  width: 180px;
+  font-size: 12px;
+}
+
+button {
+  border: 0;
+  outline: 0;
+  color: #ffffff;
+  background: #3498db;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 12px;
+  height: 33px;
+}
+
+button:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+button#clear {
+  background: #ff9800;
+}
+
+button#clear:hover {
+  background: #ffb74d;
+}
+
 .hidden {
   display: none;
 }
