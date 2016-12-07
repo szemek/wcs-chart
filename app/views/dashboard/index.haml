@@ -1,3 +1,8 @@
+%form{action: '/search'}
+  %input#query{placeholder: 'Fragment tytułu, wykonawcy'}
+  %button#search Szukaj
+  %button#clear Wyczyść
+
 %ol
   - items.each do |item|
     %li= link_to item[:title], "https://www.youtube.com/watch?v=#{item[:video_id]}", target: '_blank'
